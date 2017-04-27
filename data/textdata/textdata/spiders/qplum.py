@@ -36,10 +36,13 @@ class QplumSpider(CrawlSpider):
         paragraph = re.sub("&.....;", ' ', paragraph)
         paragraph = re.sub("&....;", ' ', paragraph)
 
+        # Replace 'U.S.' with 'US':
+        paragraph = paragraph.replace('U.S.', 'US')
+
         # Some more replacements to improve the default tokenization
         for c in ['\n', '\r', '\t']:
             paragraph = paragraph.replace(c, ' ')
-        for c in '();.,[]"\'-:/%$+':
+        for c in '();.,[]"\'-:/%$+@':
             paragraph = paragraph.replace(c, ' {} '.format(c))
 
         filename = 'qplum_data.txt'
