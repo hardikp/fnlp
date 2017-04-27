@@ -1,4 +1,5 @@
 import json
+import re
 
 from scrapy.spiders import CrawlSpider
 from w3lib.html import remove_tags, remove_tags_with_content
@@ -29,8 +30,11 @@ class QplumSpider(CrawlSpider):
         # Replace &#39; with '
         paragraph = paragraph.replace('&#39;', "'")
         paragraph = paragraph.replace('&rsquo;', "'")
+        paragraph = paragraph.replace('&ldquo;', "'")
+        paragraph = paragraph.replace('&rdquo;', "'")
         # Replace &nbsp; with a space
-        paragraph = paragraph.replace('&nbsp;', ' ')
+        paragraph = re.sub("&.....;", ' ', paragraph)
+        paragraph = re.sub("&....;", ' ', paragraph)
 
         # Some more replacements to improve the default tokenization
         for c in ['\n', '\r', '\t']:
