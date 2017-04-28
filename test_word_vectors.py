@@ -17,13 +17,20 @@ def print_nearest_words(args):
         embeddings_index[w] = coefs
     f.close()
 
+    w_v = np.zeros(50)
+    for w in args.word.strip().split():
+        if w not in embeddings_index.keys():
+            continue
+
+        w_v += embeddings_index[w]
+
     # Get the similarity scores
     score_dict = {}
     for w in embeddings_index.keys():
         if args.word == w:
             continue
 
-        score = cosine_similarity(embeddings_index[args.word].reshape(1, -1), embeddings_index[w].reshape(1, -1))[0][0]
+        score = cosine_similarity(w_v.reshape(1, -1), embeddings_index[w].reshape(1, -1))[0][0]
         score_dict[w] = score
 
     closest = Counter(score_dict).most_common(args.num_words)
