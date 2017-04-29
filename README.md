@@ -10,6 +10,8 @@ This repo contains scripts to gather finance specific text data and train NLP mo
 
 ## Train new GloVe vectors
 
+`glove.py` contains a GloVe model written in `pytorch`. `dataset.py` contains a Dataset class - it is written in a way so that `torch.utils.data.DataLoader` utility class of `pytorch` can be used for training.
+
 ```bash
 $ python3 glove.py --input wiki_data.txt --batch_size 512
 ```
@@ -44,4 +46,4 @@ price
 ```
 
 ## Notes
-This CPU-only implementation is not yet optimized. For training in CPU, it might be best to download the Glove software from [here](https://nlp.stanford.edu/projects/glove/).
+This CPU-only implementation is not yet optimized. For training on CPU, it might be best to download the Glove software from [here](https://nlp.stanford.edu/projects/glove/).

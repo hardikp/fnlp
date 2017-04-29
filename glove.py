@@ -41,6 +41,8 @@ class Glove(nn.Module):
         r = self.r_vecs(j)
         l_bias = self.l_bias(i)
         r_bias = self.r_bias(j)
+
+        # Element-wise dot product followed by bias and log terms
         out = (torch.mm(l, r.t()).diag() + l_bias + r_bias - torch.log(count))**2
         out = torch.mul(out, self.fn(count))
 
@@ -75,10 +77,26 @@ def train_glove(args):
 
         print('Average loss after Epoch [%d/%d]: %.4f' % (epoch + 1, args.num_epochs, average_loss / len(data_loader)))
 
+    # Save the word vectors to a file
+    print('Writing vectors to {}...'.format(args.output))
+    f = open(args.output, 'w')
+    for i, w in enumerate(dataset.vocab):
+        s = w
+
+        j = Variable(torch.LongTensor([i]))
+        vec = (model.l_vecs(j) + model.r_vecs(j)).data.squeeze()
+        for k in range(vec.size(0)):
+            s + ' ' + str(vec[k])
+
+        f.write(s)
+
+    f.close()
+
 
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('--input', default='wiki_data.txt', help='Input text file')
+    parser.add_argument('--output', default='vectors.txt', help='Output file')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size')
     parser.add_argument('--num_epochs', type=int, default=5, help='Number of epochs through the data')
     parser.add_argument('--context_size', type=int, default=3, help='Window size')
