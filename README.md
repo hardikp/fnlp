@@ -1,8 +1,14 @@
 # fnlp
 
-This repo contains scripts to gather finance data and train NLP models using the text data.
+This repo contains scripts to gather finance specific text data and train NLP models using the text data.
 
-## Word Vectors
+## Train new GloVe vectors
+
+```bash
+$ python3 glove.py --input wiki_data.txt --batch_size 512
+```
+
+## Check the word Vectors
 
 Trained word vectors are available on the [releases](https://github.com/hardikp/fnlp/releases) page.
 
