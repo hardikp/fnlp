@@ -2,6 +2,12 @@
 
 This repo contains scripts to gather finance specific text data and train NLP models using the text data.
 
+## Dependencies
+
+* [pytorch](http://pytorch.org/)
+* numpy
+* nltk.tokenize
+
 ## Train new GloVe vectors
 
 ```bash
@@ -36,3 +42,6 @@ stocks
 share
 price
 ```
+
+## Notes
+This CPU-only implementation is not yet optimized. For training in CPU, it might be best to download the Glove software from [here](https://nlp.stanford.edu/projects/glove/).
