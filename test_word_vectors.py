@@ -35,11 +35,15 @@ def print_nearest_words(args):
 
     closest = Counter(score_dict).most_common(args.num_words)
 
+    close_words = []
     for word, score in closest:
         if args.verbose:
             print(score, word)
         else:
-            print(word)
+            close_words.append(word)
+
+    if not args.verbose:
+        print(', '.join(close_words))
 
 
 if __name__ == '__main__':

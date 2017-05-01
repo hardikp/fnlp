@@ -1,6 +1,6 @@
 # fnlp
 
-This repo contains scripts to gather finance specific text data and train NLP models using the text data.
+This repo contains scripts to train NLP models using the text data.
 
 ## Dependencies
 
@@ -47,3 +47,10 @@ price
 
 ## Notes
 This CPU-only implementation is not yet optimized. For training on CPU, it might be best to download the Glove software from [here](https://nlp.stanford.edu/projects/glove/).
+
+## Credits
+* [GloVe Paper](https://nlp.stanford.edu/pubs/glove.pdf)
+* [TorchGlove](https://github.com/2014mchidamb/TorchGlove) repo
+
+## License
+MIT
