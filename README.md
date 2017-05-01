@@ -24,25 +24,13 @@ Let's check if the closest words make sense.
 
 ```bash
 $ python3 test_word_vectors.py --word IRA
-Roth
-SEP
-IRAs
-401
-retirement
+roth, iras, sep, 401, contribute
 
 $ python3 test_word_vectors.py --word option
-call
-put
-options
-exercise
-underlying
+call, options, put, exercise, underlying
 
 $ python3 test_word_vectors.py --word stock
-shares
-market
-stocks
-share
-price
+shares, share, market, stocks, price
 ```
 
 ## Notes

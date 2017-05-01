@@ -7,6 +7,8 @@ import numpy as np
 
 
 def print_nearest_words(args):
+    word = args.word.lower()
+
     # Load the word vectors
     embeddings_index = {}
     f = open(args.vectors)
@@ -18,7 +20,7 @@ def print_nearest_words(args):
     f.close()
 
     w_v = np.zeros(50)
-    for w in args.word.strip().split():
+    for w in word.strip().split():
         if w not in embeddings_index.keys():
             continue
 
@@ -27,7 +29,7 @@ def print_nearest_words(args):
     # Get the similarity scores
     score_dict = {}
     for w in embeddings_index.keys():
-        if args.word == w:
+        if word == w:
             continue
 
         score = cosine_similarity(w_v.reshape(1, -1), embeddings_index[w].reshape(1, -1))[0][0]
