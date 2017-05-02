@@ -86,7 +86,7 @@ def train_glove(args):
         j = Variable(torch.LongTensor([i]))
         vec = (model.l_vecs(j) + model.r_vecs(j)).data.squeeze()
         for k in range(vec.size(0)):
-            s + ' ' + str(vec[k])
+            s += ' ' + str(round(vec[k], 6))
 
         f.write(s)
 
